@@ -1,0 +1,9 @@
+# 文件以及目录过滤
+# 过滤library目录
+MathStudy/Library/
+# 过滤.vs目录
+MathStudy/.vs/
+# 过滤Temp目录
+MathStudy/Temp/
+# 过滤obj目录
+MathStudy/obj/
