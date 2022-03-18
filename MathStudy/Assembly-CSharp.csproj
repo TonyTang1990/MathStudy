@@ -53,9 +53,12 @@
     <UnityVersion>2019.4.31f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CoordinateStudy.cs" />
     <Compile Include="Assets\Scripts\CrossMath.cs" />
     <Compile Include="Assets\Scripts\DotMath.cs" />
     <Compile Include="Assets\Scripts\GameLauncher.cs" />
+    <Compile Include="Assets\Scripts\VectorDotStudy.cs" />
+    <Compile Include="Assets\Scripts\VectorStudy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

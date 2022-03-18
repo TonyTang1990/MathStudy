@@ -56,6 +56,9 @@
     <Compile Include="Assets\Scripts\Editor\AssetProcesserHook\ScriptAutoProcess\ScriptKeywordProcesser.cs" />
     <Compile Include="Assets\Scripts\Editor\CrossMathEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\DotMathEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\HandlesUtilities.cs" />
+    <Compile Include="Assets\Scripts\Editor\VectorDotStudyEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\VectorStudyEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
