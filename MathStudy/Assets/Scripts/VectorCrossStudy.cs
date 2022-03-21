@@ -1,5 +1,5 @@
 ﻿/*
- * Description:             VectorDotStudy.cs
+ * Description:             VectorCrossStudy.cs
  * Author:                  TONYTANG
  * Create Date:             2022/03/17
  */
@@ -10,10 +10,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// VectorDotStudy.cs
-/// 向量点乘学习
+/// VectorCrossStudy.cs
+/// 向量叉乘学习
 /// </summary>
-public class VectorDotStudy : MonoBehaviour
+public class VectorCrossStudy : MonoBehaviour
 {
     /// <summary>
     /// 提示文本
@@ -71,18 +71,17 @@ public class VectorDotStudy : MonoBehaviour
 
     private void Start()
     {
-        var cube1ToCube2Vector = Cube2.transform.position - Cube1.transform.position;
+        var cube2ToCube1Vector = Cube1.transform.position - Cube2.transform.position;
         var cube1ToCube3Vector = Cube3.transform.position - Cube1.transform.position;
-        var vectorDot = Vector3.Dot(cube1ToCube2Vector, cube1ToCube3Vector);
-        var radians = Mathf.Acos(vectorDot / (cube1ToCube2Vector.magnitude * cube1ToCube3Vector.magnitude));
-        var angle = Mathf.Rad2Deg * radians;
+        var vectorCross = Vector3.Cross(cube2ToCube1Vector, cube1ToCube3Vector);
+        var direction = vectorCross.y > 0 ? "向上" : "向下";
         TipTxt.text = $"红色表示Cube1,绿色表示Cube2,蓝色表示Cube3\n" +
                         $"Cube1世界坐标:{Cube1.transform.position.ToString()} 朝向:{Cube1.transform.forward.ToString()}\n" +
                         $"Cube2世界坐标系:{Cube2.transform.position.ToString()} 朝向:{Cube2.transform.forward.ToString()}\n" +
                         $"Cube3世界坐标系:{Cube3.transform.position.ToString()} 朝向:{Cube3.transform.forward.ToString()}\n" +
-                        $"Cube1到Cube2的向量:{cube1ToCube2Vector.ToString()}\n" +
+                        $"Cube2到Cube1的向量:{cube2ToCube1Vector.ToString()}\n" +
                         $"Cube1到Cube3的向量:{cube1ToCube3Vector.magnitude}\n" +
-                        $"1->2 点乘 1->3 = {vectorDot}\n" +
-                        $"1->2和1->3的夹角:{angle}";
+                        $"2->1 叉乘 1->3 = {vectorCross.ToString()}\n" +
+                        $"2->1 叉乘 1->3 方向:{direction}";
     }
 }

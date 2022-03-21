@@ -1,5 +1,5 @@
 ﻿/*
- * Description:             VectorDotStudyEditor.cs
+ * Description:             VectorUsingStudyEditor.cs
  * Author:                  TONYTANG
  * Create Date:             2022/03/17
  */
@@ -10,11 +10,11 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// VectorDotStudyEditor.cs
-/// VectorDotStudy的Editor绘制
+/// VectorUsingStudyEditor.cs
+/// VectorUsingStudy的Editor绘制
 /// </summary>
-[CustomEditor(typeof(VectorDotStudy))]
-public class VectorDotStudyEditor : Editor
+[CustomEditor(typeof(VectorUsingStudy))]
+public class VectorUsingStudyEditor : Editor
 {
     /// <summary>
     /// Cube1属性
@@ -145,20 +145,23 @@ public class VectorDotStudyEditor : Editor
         {
             if (mCube1 != null && mCube2 != null && mCube3 != null)
             {
-                var cube1ToCube2Vector = mCube2.transform.position - mCube1.transform.position;
-                var cube1ToCube3Vector = mCube3.transform.position - mCube1.transform.position;
-                var vectorDot = Vector3.Dot(cube1ToCube2Vector, cube1ToCube3Vector);
-                var radians = Mathf.Acos(vectorDot / (cube1ToCube2Vector.magnitude * cube1ToCube3Vector.magnitude));
+                var cube1Forward = mCube1.transform.forward;
+                var cube1ToCube2 = mCube2.transform.position - mCube1.transform.position;
+                var vectorDot = Vector3.Dot(cube1Forward, cube1ToCube2);
+                var radians = Mathf.Acos(vectorDot / (cube1Forward.magnitude * cube1ToCube2.magnitude));
                 var angle = Mathf.Rad2Deg * radians;
+                var vectorCross = Vector3.Cross(cube1Forward, cube1ToCube2);
+                vectorCross = (angle <= Mathf.Epsilon && angle >= -Mathf.Epsilon) ? cube1Forward : vectorCross;
                 Handles.color = mVectorColorProperty.colorValue;
                 Handles.ArrowHandleCap(1, mCube1.transform.position,
-                                        Quaternion.LookRotation(cube1ToCube2Vector),
-                                        cube1ToCube2Vector.magnitude, EventType.Repaint);
+                                        Quaternion.LookRotation(cube1Forward),
+                                        mCoordinateSystemLengthProperty.floatValue, EventType.Repaint);
                 Handles.ArrowHandleCap(1, mCube1.transform.position,
-                                        Quaternion.LookRotation(cube1ToCube3Vector),
-                                        cube1ToCube3Vector.magnitude, EventType.Repaint);
-                Handles.Label(mCube1.transform.position + cube1ToCube2Vector / 2, "1->2");
-                Handles.Label(mCube1.transform.position + cube1ToCube3Vector / 2, "1->3");
+                                        Quaternion.LookRotation(cube1ToCube2),
+                                        mCoordinateSystemLengthProperty.floatValue, EventType.Repaint);
+                Handles.ArrowHandleCap(1, mCube1.transform.position,
+                                        Quaternion.LookRotation(vectorCross),
+                                        mCoordinateSystemLengthProperty.floatValue, EventType.Repaint);
                 HandlesUtilities.DrawColorLable(mCube1.transform.position, $"夹角:{angle}", Color.green);
             }
         }

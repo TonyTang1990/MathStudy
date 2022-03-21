@@ -57,8 +57,10 @@
     <Compile Include="Assets\Scripts\CrossMath.cs" />
     <Compile Include="Assets\Scripts\DotMath.cs" />
     <Compile Include="Assets\Scripts\GameLauncher.cs" />
+    <Compile Include="Assets\Scripts\VectorCrossStudy.cs" />
     <Compile Include="Assets\Scripts\VectorDotStudy.cs" />
     <Compile Include="Assets\Scripts\VectorStudy.cs" />
+    <Compile Include="Assets\Scripts\VectorUsingStudy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
